@@ -1,0 +1,11 @@
+[editor]
+gutters = ["diff", "spacer", "diagnostics"]
+scrolloff = 2
+undercurl = true
+bufferline = "multiple"
+
+[editor.lsp]
+display-messages = true
+
+[editor.cursor-shape]
+insert = "bar"

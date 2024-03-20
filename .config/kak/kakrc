@@ -1,0 +1,56 @@
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+plug "andreyorst/plug.kak" noload
+plug 'delapouite/kakoune-mirror' %{
+  map global normal ':' ': enter-user-mode -lock mirror<ret>'
+}
+plug "tomKPZ/pykak"
+plug "tomKPZ/counted.kak" %{
+    counted-keep-sel-add-mappings ',' '<a-,>'
+    counted-insert-add-mappings
+}
+plug 'delapouite/kakoune-palette'
+plug 'alexherbo2/auto-pairs.kak' %{
+    set-option global auto_pairs ( ) { } [ ] '"' '"' "'" "'" ` ` “ ” ‘ ’ « » ‹ ›
+}
+
+# <tab>/<s-tab> for completion selection
+hook global InsertCompletionShow .* %{
+    map window insert <tab>   '<c-n>'
+    map window insert <s-tab> '<c-p>'
+}
+hook global InsertCompletionHide .* %{
+    unmap window insert <tab>   '<c-n>'
+    unmap window insert <s-tab> '<c-p>'
+}
+
+map global normal <minus> ':'
+map global normal "'" '"'
+
+define-command -docstring "add selection on current or next occurrence of current word/selection" \
+select-or-add-cursor %{
+    try %{
+        execute-keys "<a-k>\A.\z<ret>"
+        execute-keys -save-regs '' "_<a-i>w*"
+    } catch %{
+        execute-keys -save-regs '' "_*<s-n>"
+    } catch nop
+}
+
+map global normal '#' ': select-or-add-cursor<ret>' \
+-docstring "add selection on current or next occurrence of current word/selection"
+
+eval %sh{kak-lsp --kakoune -s $kak_session}
+hook global WinSetOption filetype=(rust|python) %{
+    lsp-enable-window
+    map window normal D ': lsp-hover<ret>'
+    map window normal = ': lsp-selection-range'
+}
+
+map global user '"' %{:enter-user-mode lsp<ret>} -docstring "LSP mode"
+map global insert <tab> '<a-;>:try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
+map global object a '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
+map global object <a-a> '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
+map global object f '<a-semicolon>lsp-object Function Method<ret>' -docstring 'LSP function or method'
+map global object k '<a-semicolon>lsp-object Class Interface Struct<ret>' -docstring 'LSP class interface or struct'
+map global object d '<a-semicolon>lsp-diagnostic-object --include-warnings<ret>' -docstring 'LSP errors and warnings'
+map global object D '<a-semicolon>lsp-diagnostic-object<ret>' -docstring 'LSP errors'
