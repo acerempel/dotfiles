@@ -1,0 +1,17 @@
+https://github.com/justinmk/vim-sneak
+https://github.com/tpope/vim-repeat
+https://github.com/tpope/vim-surround
+https://github.com/cohama/lexima.vim
+https://github.com/kkga/vim-envy
+https://github.com/axvr/photon.vim
+https://github.com/sdothum/vim-colors-duochrome
+https://github.com/dstein64/nvim-scrollview
+romainl/vim-cool
+jaredgorski/Mies.vim
+justinmk/vim-dirvish
+vim-scripts/zenesque.vim
+cideM/yui
+lewis6991/gitsigns.nvim	branch=v0.5
+tzachar/highlight-undo.nvim
+NMAC427/guess-indent.nvim
+rhysd/committia.vim

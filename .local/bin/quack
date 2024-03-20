@@ -1,0 +1,38 @@
+#! /usr/bin/fish
+set package ~/.local/share/nvim/site/pack/default
+set default_host https://github.com
+set default_mode start
+mkdir -p $package{start,opt}
+for plugin in (cat ~/.config/nvim/plugins.txt)
+    set options (string split --no-empty "	" "$plugin")
+    set cloneopts --depth=1
+    set mode $default_mode
+    set plugin $options[1]
+    for opt in $options[2..]
+        set option (string split = $opt)
+        switch $option[1]
+        case branch
+            set cloneopts $cloneopts --branch=$option[2]
+        case opt
+            set mode opt
+        case start
+            set mode start
+        end
+    end
+    if string match -rq '^[^/.]+/(?<name>[^/]+)$' "$plugin"
+        set url "$default_host/$plugin"
+    else
+        string match -rq '/(?<name>[^/]+)$' "$plugin"
+        set url "$plugin"
+    end
+    set plugdir "$package/$mode/$name"
+    if test -d "$plugdir"
+        if test 'ref: ' = (string sub -l 5 (cat "$plugdir/.git/HEAD"))
+            git -C "$plugdir" pull --rebase &
+        end
+    else
+        git clone "$url" "$plugdir" $cloneopts &
+    end
+end
+wait
+nvim -u NORC +'helptags ALL' +q

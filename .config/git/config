@@ -1,0 +1,17 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Alan Rempel
+	email = alan.rempel@gmail.com
+
+[merge]
+	conflictStyle = zdiff3
+
+[rebase]
+	autosquash = true
+
+[rerere]
+	enable = true
+
+[diff]
+	colorMoved = default
+	colorMovedWS = allow-indentation-change
