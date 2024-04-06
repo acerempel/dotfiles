@@ -4,7 +4,8 @@
 	email = alan.rempel@gmail.com
 
 [merge]
-	conflictStyle = zdiff3
+	# I would prefer zdiff3, but ubuntu 22.04 git doesn't know about it
+	conflictStyle = diff3
 
 [rebase]
 	autosquash = true
