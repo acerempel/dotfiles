@@ -16,3 +16,6 @@ set --export PATH $BUN_INSTALL/bin $PATH
 set -gx EDITOR nvim
 
 alias vi nvim
+
+alias ssh ssh.exe
+alias ssh-add ssh-add.exe
