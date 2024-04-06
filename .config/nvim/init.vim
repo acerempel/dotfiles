@@ -17,19 +17,25 @@ set list listchars=tab:┆\ ,trail:⋅,nbsp:␣,extends:≫,precedes:≪
 let &statusline = ' %<%f%( %h%)%( [%R%M]%)%=%( %{get(b:, ''gitsigns_head'', '''')} %{get(b:, ''gitsigns_status'', '''')}%)%=%l:%02c∕%L %P '
 
 " Imitate the ADM-3A
-noremap - :
-noremap ' @
-noremap @ "
-noremap '- @:
-noremap " `
-nnoremap <BS> <C-^>
+noremap <silent> - :
+noremap <silent> ' @
+noremap <silent> @ "
+noremap <silent> '- @:
+noremap <silent> " `
+nnoremap <silent> <BS> <C-^>
 
-noremap <CR> <C-]>
-noremap Q q
-noremap q <C-w>q
-noremap X <cmd>w<CR>
-noremap j gj
-noremap k gk
+noremap <silent> <CR> <C-]>
+noremap <silent> Q q
+noremap <silent> q <C-w>q
+noremap <silent> X <cmd>w<CR>
+noremap <silent> j gj
+noremap <silent> k gk
+sunmap j
+sunmap k
+sunmap Q
+sunmap q
+sunmap X
+sunmap <CR>
 
 map f <Plug>Sneak_f
 map F <Plug>Sneak_F
