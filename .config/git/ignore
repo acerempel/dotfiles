@@ -1,0 +1,5 @@
+*.sw[po]
+.DS_Store
+__pycache__/
+dist-newstyle/
+target/
