@@ -1,3 +1,12 @@
 [language-server.typescript-language-server]
 command = "bunx"
 args = ["--bun", "typescript-language-server", "--stdio"]
+
+[language-server.phpactor]
+command = "phpactor"
+args = ["language-server"]
+required-root-patterns = ["composer.json", ".git"]
+
+[[language]]
+name = "php"
+language-servers = ["phpactor"]
