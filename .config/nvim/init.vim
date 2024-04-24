@@ -15,7 +15,7 @@ set completeopt-=preview
 set clipboard=unnamed
 set wrap linebreak breakindent breakindentopt+=list:-1 showbreak=➥\ 
 set list listchars=tab:┆\ ,trail:⋅,nbsp:␣,extends:≫,precedes:≪
-let &statusline = ' %<%f%( %h%)%( [%R%M]%)%=%( %{get(b:, ''gitsigns_head'', '''')} %{get(b:, ''gitsigns_status'', '''')}%)%=%l:%02c∕%L %P '
+let &statusline = ' %<%f%( %h%)%( [%R%M]%)%=%( %{get(b:, ''gitsigns_head'', '''')} %{get(b:, ''gitsigns_status'', '''')}%)%=%l∕%L:%-3c %P '
 
 " Imitate the ADM-3A
 noremap <silent> - :
