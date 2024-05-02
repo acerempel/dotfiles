@@ -8,6 +8,9 @@ if status is-interactive
 end
 
 fish_add_path ~/.local/bin
+if test -d ~/.deno/bin
+    fish_add_path ~/.deno/bin
+end
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
