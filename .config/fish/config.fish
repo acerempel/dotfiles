@@ -19,3 +19,13 @@ set --export PATH $BUN_INSTALL/bin $PATH
 set -gx EDITOR nvim
 
 alias vi nvim
+
+# pnpm
+if test "$(uname)" = Linux
+    set -gx PNPM_HOME "/home/alan/.local/share/pnpm"
+end
+
+if set -q PNPM_HOME; and not string match -q -- $PNPM_HOME $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
