@@ -1,5 +1,6 @@
-[editor]
 theme = "modus_operandi"
+
+[editor]
 gutters = ["diff", "spacer", "diagnostics"]
 scrolloff = 2
 undercurl = true
