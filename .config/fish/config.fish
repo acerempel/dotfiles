@@ -5,9 +5,14 @@ if status is-interactive
     set fish_color_quote green
 
     zoxide init fish | source
+
+    alias vi nvim
 end
 
+set -x MAN_POSIXLY_CORRECT 1
+
 fish_add_path ~/.local/bin
+
 if test -d ~/.deno/bin
     fish_add_path ~/.deno/bin
 end
@@ -15,12 +20,10 @@ end
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 if test -d "$BUN_INSTALL"
-    set --export PATH $BUN_INSTALL/bin $PATH
+    fish_add_path "$BUN_INSTALL/bin"
 end
 
 set -gx EDITOR nvim
-
-alias vi nvim
 
 # pnpm
 if test "$(uname)" = Linux
@@ -28,6 +31,6 @@ if test "$(uname)" = Linux
 end
 
 if set -q PNPM_HOME; and not string match -q -- $PNPM_HOME $PATH
-    set -gx PATH "$PNPM_HOME" $PATH
+    fish_add_path "$PNPM_HOME"
 end
 # pnpm end

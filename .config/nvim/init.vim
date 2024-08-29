@@ -5,11 +5,11 @@ set undofile
 set virtualedit=block,onemore
 set autowrite
 set splitbelow splitright
-set gdefault
+set gdefault ignorecase smartcase
 set tabstop=4 softtabstop=4 shiftwidth=4
 set title
 set showcmd
-set scrolloff=2 sidescrolloff=4
+set scrolloff=2 sidescrolloff=4 smoothscroll
 set diffopt+=context:3,vertical,indent-heuristic,algorithm:histogram
 set completeopt-=preview
 set clipboard=unnamed
