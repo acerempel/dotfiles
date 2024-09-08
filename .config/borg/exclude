@@ -1,0 +1,44 @@
+
+# raw exclusions
+fm:.cache
+fm:.local/share/pnpm/store
+fm:.local/share/baloo
+fm:.local/share/icons
+fm:.local/share/containers/storage
+fm:.local/share/Trash
+fm:.var
+
+# chromium-cache
+fm:.config/chromium
+
+# google-chrome-cache
+fm:.config/google-chrome
+
+# node-cache
+fm:*/node_modules
+fm:*/.npm
+
+fm:Downloads
+fm:*.iso
+
+# firefox-cache
+fm:.mozilla/firefox
+
+# python-cache
+fm:*/__pycache__
+fm:*.pyc
+fm:*.pyo
+fm:*/.virtualenvs
+
+# rust-artefacts
+fm:.cargo
+fm:.rustup
+fm:*/target
+
+# brave-cache
+fm:.config/BraveSoftware/Brave-Browser/*/Feature Engagement Tracker/
+fm:.config/BraveSoftware/Brave-Browser/*/Local Storage/
+fm:.config/BraveSoftware/Brave-Browser/*/Service Worker/CacheStorage/
+fm:.config/BraveSoftware/Brave-Browser/*/Session Storage/
+fm:.config/BraveSoftware/Brave-Browser/Safe Browsing/
+fm:.config/BraveSoftware/Brave-Browser/ShaderCache/

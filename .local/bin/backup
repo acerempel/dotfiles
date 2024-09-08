@@ -1,0 +1,19 @@
+#!/bin/sh
+export BORG_REPO=rsync-dot-net:borg-backups/$HOST
+export BORG_PASSPHRASE=reborn-mesdames-gibbon-mayest
+ARCHIVE=$USER-daily-$(date -I)
+EXCLUDEFILE=$HOME/.config/borg/exclude
+
+cd $HOME
+systemd-inhibit \
+    --what=sleep \
+    --who='Borg backup' \
+    --why='Backup in progress' \
+    ionice -c3 \
+        borg create \
+            --progress --stats \
+            --compression auto,zlib,7 \
+            --exclude-caches \
+            --exclude-from $EXCLUDEFILE \
+            ::$ARCHIVE \
+            .
