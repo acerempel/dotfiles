@@ -16,7 +16,7 @@ fm:.config/google-chrome
 
 # node-cache
 fm:*/node_modules
-fm:*/.npm
+fm:.npm
 
 fm:Downloads
 fm:*.iso
