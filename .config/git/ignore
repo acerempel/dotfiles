@@ -3,3 +3,4 @@
 __pycache__/
 dist-newstyle/
 target/
+node_modules/

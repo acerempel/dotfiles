@@ -19,10 +19,7 @@ let &statusline = ' %<%f%( %h%)%( [%R%M]%)%=%( %{get(b:, ''gitsigns_head'', '
 
 " Imitate the ADM-3A
 noremap <silent> - :
-noremap <silent> ' @
-noremap <silent> @ "
-noremap <silent> '- @:
-noremap <silent> " `
+noremap <silent> ' `
 nnoremap <silent> <BS> <C-^>
 
 noremap <silent> <CR> <C-]>
@@ -37,6 +34,8 @@ sunmap Q
 sunmap q
 sunmap X
 sunmap <CR>
+sunmap -
+sunmap '
 
 map f <Plug>Sneak_f
 map F <Plug>Sneak_F
