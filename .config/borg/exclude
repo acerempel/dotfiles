@@ -9,7 +9,9 @@ fm:.local/share/Trash
 fm:.var
 
 # chromium-cache
-fm:.config/chromium
+fm:.config/chromium/*_cache
+fm:.config/chromium/*Cache
+fm:.config/chromium/*/*Cache
 
 # google-chrome-cache
 fm:.config/google-chrome
@@ -20,9 +22,6 @@ fm:.npm
 
 fm:Downloads
 fm:*.iso
-
-# firefox-cache
-fm:.mozilla/firefox
 
 # python-cache
 fm:*/__pycache__

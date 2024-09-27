@@ -12,7 +12,7 @@ systemd-inhibit \
     ionice -c3 \
         borg create \
             --progress --stats \
-            --compression auto,zlib,7 \
+            --compression auto,lz4 \
             --exclude-caches \
             --exclude-from $EXCLUDEFILE \
             ::$ARCHIVE \
