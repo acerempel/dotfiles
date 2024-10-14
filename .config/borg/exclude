@@ -12,6 +12,7 @@ fm:.var
 fm:.config/chromium/*_cache
 fm:.config/chromium/*Cache
 fm:.config/chromium/*/*Cache
+fm:.config/chromium/Safe Browsing
 
 # google-chrome-cache
 fm:.config/google-chrome
