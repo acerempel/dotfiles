@@ -1,9 +1,9 @@
 set background=light
-colorscheme mies
+colorscheme lunaperche
 set mouse=a
 set undofile
 set virtualedit=block,onemore
-set autowrite
+set autowriteall
 set splitbelow splitright
 set gdefault ignorecase smartcase
 set tabstop=4 softtabstop=4 shiftwidth=4
@@ -11,40 +11,33 @@ set title
 set showcmd
 set scrolloff=2 sidescrolloff=4 smoothscroll
 set diffopt+=context:3,vertical,indent-heuristic,algorithm:histogram
-set completeopt-=preview
+set completeopt-=preview completeopt+=popup
 set clipboard=unnamed
 set wrap linebreak breakindent breakindentopt+=list:-1 showbreak=➥\ 
 set list listchars=tab:┆\ ,trail:⋅,nbsp:␣,extends:≫,precedes:≪
 let &statusline = ' %<%f%( %h%)%( [%R%M]%)%=%( %{get(b:, ''gitsigns_head'', '''')} %{get(b:, ''gitsigns_status'', '''')}%)%=%l∕%L:%-3c %P '
 
-" Imitate the ADM-3A
-noremap <silent> - :
-noremap <silent> ' `
-nnoremap <silent> <BS> <C-^>
+lua <<ENDLUA
+all = {'', 'i'}
+function map(modes, lhs, rhs, opts)
+	vim.keymap.set(modes, lhs, rhs, vim.tbl_extend('keep', opts or {}, {silent = true}))
+end
+map(all, '<C-q>', '<cmd>qa<cr>')
+map(all, '<C-s>', '<cmd>w<cr>')
 
-noremap <silent> <CR> <C-]>
-noremap <silent> Q q
-noremap <silent> q <C-w>q
-noremap <silent> X <cmd>w<CR>
-noremap <silent> j gj
-noremap <silent> k gk
-sunmap j
-sunmap k
-sunmap Q
-sunmap q
-sunmap X
-sunmap <CR>
-sunmap -
-sunmap '
+nxo = {'n', 'x', 'o'}
+map(nxo, 'j', 'gj')
+map(nxo, 'k', 'gk')
+-- Imitate the ADM-3A
+map(nxo, '-', ':')
+map(nxo, '<cr>', '<c-]>')
+map(nxo, "'", "`")
+map('n', '<bs>', '<c-^>')
 
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
-sunmap f
-sunmap F
-sunmap t
-sunmap T
+for _, key in ipairs({'f', 'F', 't', 'T'}) do
+	map(nxo, key, "<Plug>Sneak_"..key, {remap=true})
+end
+ENDLUA
 
 nmap _ <Plug>(dirvish_up)
 nmap <c-w>_ <Plug>(dirvish_vsplit_up)

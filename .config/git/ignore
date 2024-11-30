@@ -4,3 +4,5 @@ __pycache__/
 dist-newstyle/
 target/
 node_modules/
+.directory
+.venv/

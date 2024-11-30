@@ -17,6 +17,11 @@ if test -d ~/.deno/bin
     fish_add_path ~/.deno/bin
 end
 
+set tbtbs ~/.local/share/JetBrains/Toolbox/scripts
+if test -d $jbtbs
+    fish_add_path $jbtbs
+end
+
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 if test -d "$BUN_INSTALL"
