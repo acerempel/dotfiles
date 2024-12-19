@@ -43,8 +43,9 @@ require('gitsigns').setup {
 }
 
 require('highlight-undo').setup()
-
+require('colorizer').setup()
 require('grug-far').setup()
+require('quicker').setup()
 
 local coq = require('coq')
 require('lspconfig').pyright.setup(coq.lsp_ensure_capabilities({}))
@@ -74,3 +75,14 @@ tel.setup {}
 tel.load_extension('zf-native')
 tel.load_extension('frecency')
 map(nxo, "<C-p>", function() tel.extensions.frecency.frecency {workspace="CWD"} end)
+
+local augend = require("dial.augend")
+require("dial.config").augends:register_group{
+  default = {
+    augend.integer.alias.decimal,
+    augend.integer.alias.hex,
+    augend.date.alias["%Y-%m-%d"],
+	-- Hex colours
+    augend.hexcolor.new{ case = "lower", },
+  },
+}

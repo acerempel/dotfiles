@@ -1,4 +1,5 @@
 set background=light
+set termguicolors
 colorscheme envy
 set mouse=a
 set undofile
@@ -53,3 +54,13 @@ let g:maplocalleader = '\'
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 
+nmap  <C-a>  <Plug>(dial-increment)
+nmap  <C-x>  <Plug>(dial-decrement)
+nmap g<C-a> g<Plug>(dial-increment)
+nmap g<C-x> g<Plug>(dial-decrement)
+vmap  <C-a>  <Plug>(dial-increment)
+vmap  <C-x>  <Plug>(dial-decrement)
+vmap g<C-a> g<Plug>(dial-increment)
+vmap g<C-x> g<Plug>(dial-decrement)
+
+let g:colortemplate_toolbar = 0
