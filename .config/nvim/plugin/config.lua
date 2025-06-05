@@ -47,8 +47,40 @@ require('colorizer').setup()
 require('grug-far').setup()
 require('quicker').setup()
 
-local coq = require('coq')
-require('lspconfig').pyright.setup(coq.lsp_ensure_capabilities({}))
+local blink = require('blink.cmp')
+local capabilities = blink.get_lsp_capabilities()
+require('lspconfig').pyright.setup { capabilities=capabilities }
+--[[
+blink.setup {
+	enabled = function ()
+		return vim.bo.buftype ~= 'prompt'
+	end,
+	completion = {
+		trigger = {
+			show_on_keyword = false,
+		}
+	},
+	keymap = {
+		preset = 'none',
+
+		['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+		['<C-e>'] = { 'hide', 'fallback' },
+		['<CR>'] = { 'accept', 'fallback' },
+
+		['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+		['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+
+		['<Up>'] = { 'select_prev', 'fallback' },
+		['<Down>'] = { 'select_next', 'fallback' },
+		['<C-p>'] = { 'select_prev', 'fallback' },
+		['<C-n>'] = { 'select_next', 'fallback' },
+
+		['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+		['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+
+		['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
+	}
+}
 
 vim.g.coq_settings = {
 	xdg = true,
@@ -56,7 +88,7 @@ vim.g.coq_settings = {
 		recommended = false,
 	},
 }
-
+]]
 -- Keybindings
 vim.api.nvim_set_keymap('i', '<Esc>', [[pumvisible() ? "\<C-e><Esc>" : "\<Esc>"]], { expr = true, silent = true, noremap = true })
 vim.api.nvim_set_keymap('i', '<C-c>', [[pumvisible() ? "\<C-e><C-c>" : "\<C-c>"]], { expr = true, silent = true, noremap = true })

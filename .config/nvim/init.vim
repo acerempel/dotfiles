@@ -14,6 +14,7 @@ set scrolloff=2 sidescrolloff=4 smoothscroll
 set diffopt+=context:3,vertical,indent-heuristic,algorithm:histogram,linematch:60
 set completeopt-=preview completeopt+=popup
 set clipboard=unnamed
+set signcolumn=yes
 set wrap linebreak breakindent breakindentopt+=list:-1 showbreak=➥\ 
 set list listchars=tab:┆\ ,trail:⋅,nbsp:␣,extends:≫,precedes:≪
 let &statusline = ' %<%f%( %h%)%( [%R%M]%)%=%( %{get(b:, ''gitsigns_head'', '''')} %{get(b:, ''gitsigns_status'', '''')}%)%=%l∕%L:%-3c %P '

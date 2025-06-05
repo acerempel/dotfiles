@@ -6,13 +6,12 @@ fm:.local/share/baloo
 fm:.local/share/icons
 fm:.local/share/containers/storage
 fm:.local/share/Trash
+fm:.local/share/JetBrains
 fm:.var
+fm:.bun
+fm:snap
 
-# chromium-cache
-fm:.config/chromium/*_cache
-fm:.config/chromium/*Cache
-fm:.config/chromium/*/*Cache
-fm:.config/chromium/Safe Browsing
+fm:.config/chromium
 
 fm:.mozilla/firefox/*/storage
 
