@@ -10,9 +10,12 @@ set gdefault ignorecase smartcase
 set tabstop=4 softtabstop=4 shiftwidth=4
 set title
 set showcmd
-set scrolloff=2 sidescrolloff=4 smoothscroll
+set scrolloff=2 sidescrolloff=4
+if has('nvim-0.10')
+	set smoothscroll completeopt+=popup
+endif
 set diffopt+=context:3,vertical,indent-heuristic,algorithm:histogram,linematch:60
-set completeopt-=preview completeopt+=popup
+set completeopt-=preview
 set clipboard=unnamed
 set signcolumn=yes
 set wrap linebreak breakindent breakindentopt+=list:-1 showbreak=➥\ 
