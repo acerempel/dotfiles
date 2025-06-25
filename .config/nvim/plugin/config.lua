@@ -50,6 +50,8 @@ require('quicker').setup()
 local blink = require('blink.cmp')
 local capabilities = blink.get_lsp_capabilities()
 require('lspconfig').pyright.setup { capabilities=capabilities }
+vim.lsp.enable('ts_ls')
+
 --[[
 blink.setup {
 	enabled = function ()
