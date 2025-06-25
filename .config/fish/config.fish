@@ -31,11 +31,8 @@ end
 set -gx EDITOR nvim
 
 # pnpm
-if test "$(uname)" = Linux
-    set -gx PNPM_HOME "/home/alan/.local/share/pnpm"
-end
-
-if set -q PNPM_HOME; and not string match -q -- $PNPM_HOME $PATH
-    fish_add_path "$PNPM_HOME"
+set -gx PNPM_HOME "/home/alan/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+    fish_add_path $PNPM_HOME
 end
 # pnpm end
