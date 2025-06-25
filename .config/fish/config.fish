@@ -4,9 +4,13 @@ if status is-interactive
     set fish_color_keyword blue --bold
     set fish_color_quote green
 
-    zoxide init fish | source
+    if command -q zoxide
+        zoxide init fish | source
+    end
 
-    alias vi nvim
+    if command -q nvim
+        alias vi nvim
+    end
 end
 
 set -x MAN_POSIXLY_CORRECT 1
@@ -28,7 +32,9 @@ if test -d "$BUN_INSTALL"
     fish_add_path "$BUN_INSTALL/bin"
 end
 
-set -gx EDITOR nvim
+if command -q nvim
+    set -gx EDITOR nvim
+end
 
 # pnpm
 set -gx PNPM_HOME "/home/alan/.local/share/pnpm"
