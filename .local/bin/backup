@@ -12,6 +12,7 @@ cd $HOME
 #     --why='Backup in progress' \
     ionice -c3 \
         borg create \
+            --remote-path borg14 \
             --progress --stats \
             --compression auto,lz4 \
             --exclude-caches \
