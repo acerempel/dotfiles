@@ -163,14 +163,3 @@ tel.setup {}
 tel.load_extension('zf-native')
 tel.load_extension('frecency')
 map(nxo, "<C-p>", function() tel.extensions.frecency.frecency {workspace="CWD"} end)
-
-local augend = require("dial.augend")
-require("dial.config").augends:register_group{
-  default = {
-    augend.integer.alias.decimal,
-    augend.integer.alias.hex,
-    augend.date.alias["%Y-%m-%d"],
-	-- Hex colours
-    augend.hexcolor.new{ case = "lower", },
-  },
-}
