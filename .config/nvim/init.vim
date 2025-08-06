@@ -1,6 +1,6 @@
 set background=light
 set termguicolors
-colorscheme envy
+"colorscheme modus
 set mouse=a
 set undofile
 set virtualedit=block,onemore

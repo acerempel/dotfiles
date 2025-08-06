@@ -18,7 +18,7 @@ require('mini.deps').setup()
 local plugin = MiniDeps.add
 
 plugin('jaredgorski/Mies.vim')
-plugin('Saghen/blink.cmp')
+plugin({ source = 'Saghen/blink.cmp', checkout = "v1.*" })
 plugin('tyru/capture.vim')
 plugin('gmr458/cold.nvim')
 plugin('rhysd/committia.vim')
@@ -27,7 +27,7 @@ plugin('sindrets/diffview.nvim')
 plugin('aerosol/dumbotron.vim')
 plugin('amedoeyes/eyes.nvim')
 plugin('lewis6991/gitsigns.nvim')
-plugin('MagicDuck/grug-far.nvim')
+-- plugin('MagicDuck/grug-far.nvim')
 plugin('NMAC427/guess-indent.nvim')
 plugin('tzachar/highlight-undo.nvim')
 plugin('cohama/lexima.vim')
@@ -65,6 +65,8 @@ plugin('tpope/vim-surround')
 plugin('cideM/yui')
 plugin('vim-scripts/zenesque.vim')
 
+MiniDeps.now(function() vim.cmd('colorscheme modus') end)
+
 for _, key in ipairs({'f', 'F', 't', 'T'}) do
 	map(nxo, key, "<Plug>Sneak_"..key, {remap=true})
 end
@@ -95,48 +97,63 @@ require('gitsigns').setup {
 
 require('highlight-undo').setup()
 require('colorizer').setup()
-require('grug-far').setup()
+-- require('grug-far').setup()
 require('quicker').setup()
 
 local blink = require('blink.cmp')
 local capabilities = blink.get_lsp_capabilities()
-require('lspconfig').pyright.setup { capabilities=capabilities }
+local py = {
+	capabilities=capabilities,
+	cmd = { "pyright-langserver", "--stdio", "--verbose" },
+	settings = {
+		python = {
+			pythonPath = ".venv/bin/python",
+		}
+	}
+}
+vim.lsp.config('pyright', py)
+vim.lsp.enable('pyright')
 ts= require ('lspconfig').ts_ls
-ts.cmd = {'bunx', 'typescript-language-server', '--stdio'}
+ts.capabilities = capabilities
 vim.lsp.config('ts_ls', ts)
 vim.lsp.enable('ts_ls')
 
---[[
-blink.setup {
-	enabled = function ()
-		return vim.bo.buftype ~= 'prompt'
-	end,
-	completion = {
-		trigger = {
-			show_on_keyword = false,
+MiniDeps.later(function ()
+	blink.setup {
+		enabled = function ()
+			return vim.bo.buftype ~= 'prompt'
+		end,
+		fuzzy = {
+			implementation = "lua"
+		},
+		completion = {
+			trigger = {
+				show_on_keyword = false,
+			}
+		},
+		keymap = {
+			preset = 'none',
+
+			['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+			['<C-e>'] = { 'hide', 'fallback' },
+			['<CR>'] = { 'accept', 'fallback' },
+
+			['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+			['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+
+			['<Up>'] = { 'select_prev', 'fallback' },
+			['<Down>'] = { 'select_next', 'fallback' },
+			['<C-p>'] = { 'select_prev', 'fallback' },
+			['<C-n>'] = { 'select_next', 'fallback' },
+
+			['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+			['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+
+			['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
 		}
-	},
-	keymap = {
-		preset = 'none',
-
-		['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-		['<C-e>'] = { 'hide', 'fallback' },
-		['<CR>'] = { 'accept', 'fallback' },
-
-		['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
-		['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
-
-		['<Up>'] = { 'select_prev', 'fallback' },
-		['<Down>'] = { 'select_next', 'fallback' },
-		['<C-p>'] = { 'select_prev', 'fallback' },
-		['<C-n>'] = { 'select_next', 'fallback' },
-
-		['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-		['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
-
-		['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
 	}
-}
+end)
+--[=[
 
 vim.g.coq_settings = {
 	xdg = true,
@@ -144,7 +161,6 @@ vim.g.coq_settings = {
 		recommended = false,
 	},
 }
-]]
 -- Keybindings
 vim.api.nvim_set_keymap('i', '<Esc>', [[pumvisible() ? "\<C-e><Esc>" : "\<Esc>"]], { expr = true, silent = true, noremap = true })
 vim.api.nvim_set_keymap('i', '<C-c>', [[pumvisible() ? "\<C-e><C-c>" : "\<C-c>"]], { expr = true, silent = true, noremap = true })
@@ -157,9 +173,12 @@ vim.api.nvim_set_keymap(
 )
 vim.api.nvim_set_keymap('i', '<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]], { expr = true, silent = true, noremap = true })
 vim.api.nvim_set_keymap('i', '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<BS>"]], { expr = true, silent = true, noremap = true })
+]=]
 
-local tel = require('telescope')
-tel.setup {}
-tel.load_extension('zf-native')
-tel.load_extension('frecency')
-map(nxo, "<C-p>", function() tel.extensions.frecency.frecency {workspace="CWD"} end)
+MiniDeps.later(function ()
+	local tel = require('telescope')
+	tel.setup {}
+	tel.load_extension('zf-native')
+	tel.load_extension('frecency')
+	map(nxo, "<C-p>", function() require('telescope').extensions.frecency.frecency {workspace="CWD"} end)
+end)
