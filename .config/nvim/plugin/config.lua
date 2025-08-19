@@ -17,21 +17,29 @@ map('n', '<bs>', '<c-^>')
 require('mini.deps').setup()
 local plugin = MiniDeps.add
 
-plugin('jaredgorski/Mies.vim')
-plugin('tyru/capture.vim')
-plugin('gmr458/cold.nvim')
-plugin('rhysd/committia.vim')
-plugin('ms-jpq/coq_nvim')
-plugin('sindrets/diffview.nvim')
+-- colorschemes
 plugin('aerosol/dumbotron.vim')
 plugin('amedoeyes/eyes.nvim')
+plugin('jaredgorski/Mies.vim')
+plugin('gmr458/cold.nvim')
+plugin('miikanissi/modus-themes.nvim')
+plugin('e-q/okcolors.nvim')
+plugin('axvr/photon.vim')
+plugin('sdothum/vim-colors-duochrome')
+plugin('kkga/vim-envy')
+plugin('cideM/yui')
+plugin('vim-scripts/zenesque.vim')
+
+-- others
+plugin('tyru/capture.vim')
+plugin('rhysd/committia.vim')
+plugin('sindrets/diffview.nvim')
 plugin('lewis6991/gitsigns.nvim')
 -- plugin('MagicDuck/grug-far.nvim')
 plugin('NMAC427/guess-indent.nvim')
 plugin('tzachar/highlight-undo.nvim')
 plugin('cohama/lexima.vim')
 plugin('echasnovski/mini.nvim')
-plugin('miikanissi/modus-themes.nvim')
 plugin('NeogitOrg/neogit')
 plugin('hrsh7th/nvim-cmp')
 plugin('catgoose/nvim-colorizer.lua')
@@ -39,19 +47,15 @@ plugin('martineausimon/nvim-lilypond-suite')
 plugin('neovim/nvim-lspconfig')
 plugin('dstein64/nvim-scrollview')
 plugin('nvim-treesitter/nvim-treesitter')
-plugin('e-q/okcolors.nvim')
-plugin('axvr/photon.vim')
 plugin('nvim-lua/plenary.nvim')
 plugin('stevearc/quicker.nvim')
 plugin('mrcjkb/rustaceanvim')
 plugin('nvim-telescope/telescope-frecency.nvim')
 plugin('natecraddock/telescope-zf-native.nvim')
 plugin('nvim-telescope/telescope.nvim')
-plugin('sdothum/vim-colors-duochrome')
 plugin('lifepillar/vim-colortemplate')
 plugin('romainl/vim-cool')
 plugin('justinmk/vim-dirvish')
-plugin('kkga/vim-envy')
 plugin('rbong/vim-flog')
 plugin('tpope/vim-fugitive')
 plugin('andymass/vim-matchup')
@@ -61,8 +65,6 @@ plugin('tpope/vim-repeat')
 plugin('tpope/vim-rhubarb')
 plugin('justinmk/vim-sneak')
 plugin('tpope/vim-surround')
-plugin('cideM/yui')
-plugin('vim-scripts/zenesque.vim')
 plugin {
   source = "L3MON4D3/LuaSnip",
   checkout = 'v2.4.0',
@@ -132,6 +134,14 @@ MiniDeps.later(function ()
   }
   vim.lsp.config('pyright', py)
   vim.lsp.enable('pyright')
+  vim.lsp.config('ruff', {
+    init_options = {
+      settings = {
+        showSyntaxErrors = false,
+      }
+    }
+  })
+  vim.lsp.enable('ruff')
   ts= require ('lspconfig').ts_ls
   ts.capabilities = capabilities
   vim.lsp.config('ts_ls', ts)
