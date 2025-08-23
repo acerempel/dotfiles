@@ -17,7 +17,7 @@ map('n', '<bs>', '<c-^>')
 require('mini.deps').setup()
 local plugin = MiniDeps.add
 
--- colorschemes
+-- colorschemes {{{
 plugin('aerosol/dumbotron.vim')
 plugin('amedoeyes/eyes.nvim')
 plugin('jaredgorski/Mies.vim')
@@ -29,18 +29,36 @@ plugin('sdothum/vim-colors-duochrome')
 plugin('kkga/vim-envy')
 plugin('cideM/yui')
 plugin('vim-scripts/zenesque.vim')
+-- }}}
+
+
+-- git stuff {{{
+-- show diff when committing from command line
+plugin('rhysd/committia.vim')
+
+-- tabpage overview of diffs
+plugin('sindrets/diffview.nvim')
+
+-- indicate changes in signcolumn
+plugin('lewis6991/gitsigns.nvim')
+-- plugin('MagicDuck/grug-far.nvim')
+
+-- magit-inspired gui ui
+plugin('NeogitOrg/neogit')
+
+-- fancy git log
+plugin('rbong/vim-flog')
+
+-- the premier vim plugin for git
+plugin('tpope/vim-fugitive')
+-- }}}
 
 -- others
 plugin('tyru/capture.vim')
-plugin('rhysd/committia.vim')
-plugin('sindrets/diffview.nvim')
-plugin('lewis6991/gitsigns.nvim')
--- plugin('MagicDuck/grug-far.nvim')
 plugin('NMAC427/guess-indent.nvim')
 plugin('tzachar/highlight-undo.nvim')
 plugin('cohama/lexima.vim')
 plugin('echasnovski/mini.nvim')
-plugin('NeogitOrg/neogit')
 plugin('hrsh7th/nvim-cmp')
 plugin('catgoose/nvim-colorizer.lua')
 plugin('martineausimon/nvim-lilypond-suite')
@@ -56,8 +74,6 @@ plugin('nvim-telescope/telescope.nvim')
 plugin('lifepillar/vim-colortemplate')
 plugin('romainl/vim-cool')
 plugin('justinmk/vim-dirvish')
-plugin('rbong/vim-flog')
-plugin('tpope/vim-fugitive')
 plugin('andymass/vim-matchup')
 plugin('romainl/vim-qf')
 plugin('lambdalisue/vim-readablefold')
@@ -321,3 +337,5 @@ MiniDeps.later(function ()
 	tel.load_extension('frecency')
 	map(nxo, "<C-p>", function() require('telescope').extensions.frecency.frecency {workspace="CWD"} end)
 end)
+
+-- vim:foldmethod=marker:foldenable
