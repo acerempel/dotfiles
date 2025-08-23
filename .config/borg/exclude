@@ -16,6 +16,10 @@ fm:.config/chromium
 fm:.mozilla/firefox/*/storage
 
 fm:.wp-env
+fm:.local/share/NuGet
+fm:.config/Code/Cache*
+fm:.config/Code/*Cache
+fm:.config/JetBrains/
 
 # google-chrome-cache
 fm:.config/google-chrome
