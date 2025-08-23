@@ -31,6 +31,8 @@ plugin('cideM/yui')
 plugin('vim-scripts/zenesque.vim')
 -- }}}
 
+-- multi-file search
+plugin('eugen0329/vim-esearch')
 
 -- git stuff {{{
 -- show diff when committing from command line
@@ -41,7 +43,6 @@ plugin('sindrets/diffview.nvim')
 
 -- indicate changes in signcolumn
 plugin('lewis6991/gitsigns.nvim')
--- plugin('MagicDuck/grug-far.nvim')
 
 -- magit-inspired gui ui
 plugin('NeogitOrg/neogit')
