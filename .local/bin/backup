@@ -2,15 +2,11 @@
 export HOST=heinrich-isaac
 export BORG_REPO=rsync-dot-net:borg-backups/$HOST
 export BORG_PASSPHRASE=reborn-mesdames-gibbon-mayest
-ARCHIVE=$USER-guillaume-daily-$(date -I)
+ARCHIVE=$USER-$(uname -n)-daily-$(date -I)
 EXCLUDEFILE=$HOME/.config/borg/exclude
 
 cd $HOME
-systemd-inhibit \
-    --what=sleep \
-    --who='Borg backup' \
-    --why='Backup in progress' \
-    ionice -c3 \
+cmd="ionice -c3 \
         borg create \
             --remote-path borg14 \
             --progress --stats \
@@ -19,3 +15,13 @@ systemd-inhibit \
             --exclude-from $EXCLUDEFILE \
             ::$ARCHIVE \
             .
+       "
+
+if command -v systemd-inhibit
+then systemd-inhibit \
+    --what=sleep \
+    --who='Borg backup' \
+    --why='Backup in progress' \
+    $cmd
+else $cmd
+fi
